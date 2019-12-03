@@ -1,4 +1,2 @@
-import requests
+from application import app
 
-responce=requests.get("https://google.com")
-print(responce)

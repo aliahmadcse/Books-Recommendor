@@ -10,6 +10,7 @@ autopep8 = "*"
 [packages]
 requests = "*"
 flask = "*"
+flask-dotenv = "*"
 
 [requires]
 python_version = "3.8"
