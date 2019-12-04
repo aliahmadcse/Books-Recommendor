@@ -2,7 +2,13 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 text-center">
-      <h3>Hello Earth</h3>
+      <form action="{{url_for('index')}}" method="POST">
+        <input type="search" name="searchItem" />
+        <input type="submit" name="submit" />
+      </form>
+      {% if searchItem %}
+      {{searchItem}}
+      {% endif %}
     </div>
   </div>
 </div>
