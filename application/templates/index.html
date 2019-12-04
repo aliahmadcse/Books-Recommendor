@@ -1,5 +1,6 @@
 {% extends "layout.html" %} {% block content %}
 <div class="container-fluid">
+  <!-- search form -->
   <div class="row form">
     <div class="col-xs-2"></div>
     <div class="col-xs-8">
@@ -19,11 +20,17 @@
       </form>
     </div>
   </div>
+  <!-- Books representation -->
   <div class="row">
+    <h3 class="text-center">Books Collection</h3>
     {% for index,row in books.iterrows() %}
     <div class="col-xs-2 bookItem">
       <div class="bookImg">
-        <img src="{{row['Image-URL-M']}}" alt="Image" class="img-responsive img" />
+        <img
+          src="{{row['Image-URL-M']}}"
+          alt="Image"
+          class="img-responsive img"
+        />
       </div>
       <div class="bookTitle">
         <p class="text-primary">{{row['Book-Title']}}</p>
