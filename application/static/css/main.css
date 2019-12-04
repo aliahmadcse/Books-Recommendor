@@ -3,3 +3,11 @@
     margin: 0px;
     box-sizing: border-box;
 }
+.form{
+    margin-top:70px;
+}
+.bookItem{
+    width:100px;
+    height:100px;
+    margin:20px 30px 20px 30px;
+}
