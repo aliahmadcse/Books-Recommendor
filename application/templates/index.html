@@ -21,9 +21,13 @@
   </div>
   <div class="row">
     {% for index,row in books.iterrows() %}
-    <div class="col-xs-4 bookItem">
-      <img src="{{row['Image-URL-M']}}" alt="Image"/>
-      <p>{{row['Book-Title']}}</p>
+    <div class="col-xs-2 bookItem">
+      <div class="bookImg">
+        <img src="{{row['Image-URL-M']}}" alt="Image" class="img-responsive img" />
+      </div>
+      <div class="bookTitle">
+        <p class="text-primary">{{row['Book-Title']}}</p>
+      </div>
     </div>
     {% endfor %}
   </div>
