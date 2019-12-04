@@ -11,6 +11,7 @@ autopep8 = "*"
 requests = "*"
 flask = "*"
 flask-dotenv = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.8"

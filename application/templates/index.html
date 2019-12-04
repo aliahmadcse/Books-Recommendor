@@ -20,10 +20,10 @@
     </div>
   </div>
   <div class="row">
-    {% for i in range(1,10) %}
+    {% for index,row in books.iterrows() %}
     <div class="col-xs-4 bookItem">
-      <img src="#" alt="Image"/>
-      <p>This is book</p>
+      <img src="{{row['Image-URL-M']}}" alt="Image"/>
+      <p>{{row['Book-Title']}}</p>
     </div>
     {% endfor %}
   </div>
