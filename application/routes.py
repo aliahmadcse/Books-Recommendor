@@ -2,14 +2,14 @@ from application import app
 from flask import render_template, request
 import pandas as pd
 
+# reading the search csv dataset
+books = pd.read_csv('BX-Books.csv', sep=';',error_bad_lines=False, encoding="latin-1")
+books.columns = ["ISBN", "Book-Title", "Book-Author", "Year-Of-Publication","Publisher", "Image-URL-S", "Image-URL-M", "Image-URL-L"]
+ratings = pd.read_csv('BX-Book-Ratings.csv', sep=';',error_bad_lines=False, encoding="latin-1")
+ratings.columns = ["User-ID", "ISBN", "Book-Rating"]
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    # reading the search csv dataset
-    books = pd.read_csv('BX-Books.csv', sep=';',error_bad_lines=False, encoding="latin-1")
-    books.columns = ["ISBN", "Book-Title", "Book-Author", "Year-Of-Publication","Publisher", "Image-URL-S", "Image-URL-M", "Image-URL-L"]
-    ratings = pd.read_csv('BX-Book-Ratings.csv', sep=';',error_bad_lines=False, encoding="latin-1")
-    ratings.columns = ["User-ID", "ISBN", "Book-Rating"]
     # getting the search query
     searchQuery = request.form.get('searchItem')
     if searchQuery:
@@ -29,5 +29,18 @@ def index():
         rating = ratings[ratings['ISBN'].str.contains(bookdata['ISBN'])]
         rating = rating.iloc[0]
         rating = rating['Book-Rating']
+        recommendationList=KNN(ratings,bookdata['ISBN'],rating)
+        print(recommendationList)
         return render_template('index.html', searchItem=bookdata, rating=rating)
     return render_template('index.html', books=books.sample(n=20))
+
+
+def KNN(ratings,ISBN,rating):
+    ratingList=ratings.values.tolist()
+    distance=[]
+    for item in ratingList:
+        d=abs(rating-item[2])
+        distance.append((item[1],d))
+    distance.sort(key=lambda x:x[1])
+    return distance[0:10]
+
