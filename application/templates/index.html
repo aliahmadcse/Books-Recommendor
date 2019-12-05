@@ -20,7 +20,17 @@
       </form>
     </div>
   </div>
+  <!-- Searched book representation -->
+  {% if searchItem %}
+  <div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-8">
+      {{searchItem}}
+    </div>
+  </div>
+  {% endif %}
   <!-- Books representation -->
+  {% if not searchItem %}
   <div class="row">
     <h3 class="text-center">Books Collection</h3>
     {% for index,row in books.iterrows() %}
@@ -38,5 +48,6 @@
     </div>
     {% endfor %}
   </div>
+  {% endif %}
 </div>
 {% endblock %}
