@@ -30,7 +30,8 @@ def index():
         rating = rating.iloc[0]
         rating = rating['Book-Rating']
         recommendationList=KNN(ratings,bookdata['ISBN'],rating)
-        print(recommendationList)
+        recommendedBooks=selectKNNBooks(books,recommendationList)
+        print(recommendedBooks)
         return render_template('index.html', searchItem=bookdata, rating=rating)
     return render_template('index.html', books=books.sample(n=20))
 
@@ -44,3 +45,22 @@ def KNN(ratings,ISBN,rating):
     distance.sort(key=lambda x:x[1])
     return distance[0:10]
 
+def selectKNNBooks(books,recommendationList):
+    recommendedBooks=list()
+    for isbn,rating in recommendationList:
+        booksRow = books[books['ISBN'].str.contains(isbn)]
+        firstRow = booksRow.iloc[0]
+        recommendedBooks.append({
+            'ISBN': firstRow['ISBN'],
+            'Book-Title': firstRow['Book-Title'],
+            'Book-Author': firstRow['Book-Author'],
+            'Year-Of-Publication': firstRow['Year-Of-Publication'],
+            'Publisher': firstRow['Publisher'],
+            'Image-URL-S': firstRow['Image-URL-S'],
+            'Image-URL-M': firstRow['Image-URL-M'],
+            'Image-URL-L': firstRow['Image-URL-L']
+        })
+    return recommendedBooks
+
+
+        
