@@ -22,3 +22,9 @@
 .bookItem:hover{
     transform: scale(1.05);
 }
+.searchImg{
+    margin:20px;
+}
+.imgDiv,.titleDiv{
+    display: inline-block;
+}

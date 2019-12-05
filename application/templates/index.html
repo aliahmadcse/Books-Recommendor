@@ -25,7 +25,19 @@
   <div class="row">
     <div class="col-xs-2"></div>
     <div class="col-xs-8">
-      {{searchItem}}
+      <div class="imgDiv">
+        <img
+          src="{{searchItem['Image-URL-M']}}"
+          class="searchImg"
+          alt="Image"
+        />
+      </div>
+      <div class="titleDiv">
+        <h3>{{searchItem["Book-Title"]}}</h3>
+        <h4>Author : {{searchItem["Book-Author"]}}</h4>
+        <h5>ISBN: {{searchItem["ISBN"]}}</h5>
+        <h5>Rating: {{rating}}/10</h5>
+      </div>
     </div>
   </div>
   {% endif %}
