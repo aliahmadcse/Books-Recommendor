@@ -31,8 +31,8 @@ def index():
         rating = rating['Book-Rating']
         recommendationList=KNN(ratings,bookdata['ISBN'],rating)
         recommendedBooks=selectKNNBooks(books,recommendationList)
-        print(recommendedBooks)
-        return render_template('index.html', searchItem=bookdata, rating=rating)
+        # print(recommendedBooks)
+        return render_template('index.html', searchItem=bookdata, rating=rating,recommendedBooks=recommendedBooks)
     return render_template('index.html', books=books.sample(n=20))
 
 

@@ -40,6 +40,23 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <h3 class="text-center">Recommended Books</h3>
+    {% for item in recommendedBooks %}
+    <div class="col-xs-2 bookItem">
+      <div class="bookImg">
+        <img
+          src="{{item['Image-URL-M']}}"
+          alt="Image"
+          class="img-responsive img"
+        />
+      </div>
+      <div class="bookTitle">
+        <p class="text-primary">{{item['Book-Title']}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
   {% endif %}
   <!-- Books representation -->
   {% if not searchItem %}
