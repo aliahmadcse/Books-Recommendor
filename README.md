@@ -47,13 +47,13 @@ The algorithm used is KNN machine learning algorith Which is actually an algorit
 
 5. Fire up vscode integrated terminal.
 
-6. Run: $ **pipenv install --ignore-pipfile** to create the same virtual environment on your machine as needed. You might need to install pipenv first by running $ _pip install pipenv globally_.
+6. Run: $ **pipenv install --ignore-pipfile** to create the same virtual environment on your machine as needed. You might need to install pipenv globally first by running $ **pip install pipenv**.
 
 7. Vscode will detect the virtual environment and activate it. You might need to reload it once.
 
-8. Once the virtual environment is activated, run \$ _flask run_.
+8. Once the virtual environment is activated, run $ **flask run**.
 
-9. Your application will be start serving at port _5000_.
+9. Your application will be start serving at port **5000**.
 
 10. At home page, you will see some random books and a search box.
 
