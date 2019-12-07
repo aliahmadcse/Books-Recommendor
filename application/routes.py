@@ -26,28 +26,34 @@ def index():
             'Image-URL-M': firstRow['Image-URL-M'],
             'Image-URL-L': firstRow['Image-URL-L']
         }
-        rating = ratings[ratings['ISBN'].str.contains(bookdata['ISBN'])]
-        rating = rating.iloc[0]
-        rating = rating['Book-Rating']
-        recommendationList=KNN(ratings,bookdata['ISBN'],rating)
+        # rating = ratings[ratings['ISBN'].str.contains(bookdata['ISBN'])]
+        # rating = rating.iloc[0]
+        # rating = rating['Book-Rating']
+        recommendationList=KNN(books,bookdata['ISBN'],bookdata['Year-Of-Publication'])
         recommendedBooks=selectKNNBooks(books,recommendationList)
-        # print(recommendedBooks)
-        return render_template('index.html', searchItem=bookdata, rating=rating,recommendedBooks=recommendedBooks)
+        return render_template('index.html', searchItem=bookdata, yearOfPublication=bookdata["Year-Of-Publication"],recommendedBooks=recommendedBooks)
     return render_template('index.html', books=books.sample(n=20))
 
 
-def KNN(ratings,ISBN,rating):
-    ratingList=ratings.values.tolist()
+def KNN(books,ISBN,yearOfPublication):
+    bookList=books.values.tolist()
     distance=[]
-    for item in ratingList:
-        d=abs(rating-item[2])
-        distance.append((item[1],d))
+    print(bookList[0:10])
+    print("**********************************")
+    print(yearOfPublication)
+    for item in bookList:
+        try:
+            int(item[3])
+        except:
+            continue
+        d=abs(int(yearOfPublication)-int(item[3]),)
+        distance.append((item[0],d))
     distance.sort(key=lambda x:x[1])
     return distance[0:10]
 
 def selectKNNBooks(books,recommendationList):
     recommendedBooks=list()
-    for isbn,rating in recommendationList:
+    for isbn,yearOfPublication in recommendationList:
         booksRow = books[books['ISBN'].str.contains(isbn)]
         firstRow = booksRow.iloc[0]
         recommendedBooks.append({

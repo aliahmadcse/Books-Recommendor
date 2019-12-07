@@ -36,7 +36,7 @@
         <h3>{{searchItem["Book-Title"]}}</h3>
         <h4>Author : {{searchItem["Book-Author"]}}</h4>
         <h5>ISBN: {{searchItem["ISBN"]}}</h5>
-        
+        <h5>Year of Publication: {{searchItem["Year-Of-Publication"]}}</h5>
       </div>
     </div>
   </div>
@@ -53,6 +53,7 @@
       </div>
       <div class="bookTitle">
         <p class="text-primary">{{item['Book-Title']}}</p>
+        <h5>Year of Publication: {{item["Year-Of-Publication"]}}</h5>
       </div>
     </div>
     {% endfor %}
